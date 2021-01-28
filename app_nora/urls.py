@@ -19,5 +19,10 @@ from . import views
 app_name = "app_nora"
 
 urlpatterns = [
-    path("", views.inicio)
+    path("", views.inicio),
+    path('listar_menu', views.ListarMenu.as_view(), name="listar_menu"),
+    path('crear_menu', views.CreateMenu.as_view(), name="crear_menu"),
+    path('<pk>/editar_menu', views.EditMenu.as_view(), name="editar_menu"),
+    path('<pk>/borrar_db_cbv', views.DeleteMenu.as_view(), name="eliminar_menu") 
+
 ]

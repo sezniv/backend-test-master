@@ -18,5 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    path('', include('app_nora.urls')),
+
+    #Incluyo las views no Nora
+    path('', include('app_nora.urls')), 
 ]
