@@ -29,3 +29,10 @@ th, .boton {
     border-style: solid;
     border-width: thin;
 }
+
+.btn-primary{
+    background-color: black;
+    border-color: black;
+
+}
+
