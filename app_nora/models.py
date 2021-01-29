@@ -1,6 +1,12 @@
 from django.db import models
 from django.core import validators
 import uuid
+from django.contrib.auth.models import User
+
+
+class Usuario(models.Model):
+
+    usuario = models.OneToOneField(User, on_delete = models.CASCADE)
 
 class Menu(models.Model):
 
