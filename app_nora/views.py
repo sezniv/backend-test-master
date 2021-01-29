@@ -35,14 +35,12 @@ class DeleteMenu(DeleteView):
 
 class UrlMenu(View):
 
-    template_name = 'app_nora/pagina_personalizada.html'
-    model = Menu
-
-    def get(self, request):
-        id = request.menu.menu_uuid
-        lista_menu = list(self.model.objects.filter(self.model.menu_uuid==id).values()[0]
-        menu = {'menu': lista_menu}
-        return render(request, self.template_name, context=menu)
+    def get(self, request, id):
+        menu_uuid = self.request.Menu.menu_uuid #OBTENER ID DEL USUARIO QUE ESTA VISITANDO LA VISTA
+        menu = Menu.objects.filter(id=menu_uuid).values()[0]
+        print(menu)
+        context = {'menu':menu}
+        return render(request, 'app_ex/pagina_personalizada.html', context=context)
 
 
 #SEND SLACK MENSAJE USANDO LA API
@@ -62,6 +60,7 @@ def crear_mensaje_slack(argv):
 
     except getopt.GetoptError:
         print('views.py -m <message>')
+
         sys.exit(2)
     if len(opts) == 0:
         message= "HELLO, WORLD"
