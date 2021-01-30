@@ -24,6 +24,6 @@ urlpatterns = [
     path('crear_menu', views.CreateMenu.as_view(), name="crear_menu"),
     path('<pk>/editar_menu', views.EditMenu.as_view(), name="editar_menu"),
     path('<pk>/eliminar_menu', views.DeleteMenu.as_view(), name="eliminar_menu"),
-    path('menu/<id>/', views.UrlMenu.as_view(), name="url_menu"),
-
+    path('menu/<slug:menu_uuid>', views.MenuDetailView.as_view(), name="menu_del_dia"),
+    path('mensaje_enviado', views.enviar_mensaje, name="enviar_mensaje")
 ]

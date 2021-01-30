@@ -5,30 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'app_nora/css/style.css' %}">
 </head>
+<br><br>
 <body>
-    <div>
-        <h2>Menu de hoy</h2>
-        <table class="table">
-            <tr>
-                <th>Fecha</th>
-                <th>opcion_1</th>
-                <th>opcion_2</th>
-                <th>opcion_3</th>
-                <th>opcion_4</th>
-            </tr>    
-
-        {% for menu in menu %}
-            <tr><div>
-                <td>{{menu.fecha}}</td></div>
-                <td>{{menu.opcion_1}}</td>
-                <td>{{menu.opcion_2}}</td>
-                <td>{{menu.opcion_3}}</td>
-                <td>{{menu.opcion_4}}</td>
-            </tr>
-        {% endfor %}
-        </table>
-    </div>
+    <div class="container">
+        <div class="row">
+          <div id ="container" class="col-6 col-sm-4"><h3>{{menu.opcion_1}}</h3></div>
+          <div id ="container" class="col-6 col-sm-4"><h3>{{menu.opcion_2}}</h3></div>
+      
+          <!-- Force next columns to break to new line at md breakpoint and up -->
+          <div class="w-100 d-none d-md-block"></div>
+      
+          <div id ="container" class="col-6 col-sm-4"><h3>{{menu.opcion_3}}</h3></div>
+          <div id ="container" class="col-6 col-sm-4"><h3>{{menu.opcion_4}}</h3></div>
+        </div>
+      </div>
 </body>
-</html>
+

@@ -1,13 +1,14 @@
-from django.shortcuts import render
-from .forms import CrearMenu
-from django.views.generic import ListView
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView,DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.base import View
 from django.urls import reverse_lazy
 from .models import Menu
-import requests
-import sys
-import getopt
+from .forms import CrearMenu
+import slack
+import os
+from pathlib import Path
+from dotenv import load_dotenv
 
 def inicio(request):
     return render(request, 'app_nora/index.html')
@@ -33,48 +34,22 @@ class DeleteMenu(DeleteView):
     fields = '__all__'
     success_url = reverse_lazy('app_nora:listar_menu')
 
-class UrlMenu(View):
+class MenuDetailView(DetailView):
+    template_name = 'app_nora/pagina_personalizada.html'
+    #query = Menu.objects.all()
 
-    def get(self, request, id):
-        menu_uuid = self.request.Menu.menu_uuid #OBTENER ID DEL USUARIO QUE ESTA VISITANDO LA VISTA
-        menu = Menu.objects.filter(id=menu_uuid).values()[0]
-        print(menu)
-        context = {'menu':menu}
-        return render(request, 'app_ex/pagina_personalizada.html', context=context)
+    def get_object(self):
+        id_ = self.kwargs.get("menu_uuid")
+        return get_object_or_404(Menu, menu_uuid=id_)
 
 
 #SEND SLACK MENSAJE USANDO LA API
 
-def send_slack_message(message):
-    payload = '{"text":"%s"}' % message
-    response = requests.post('https://hooks.slack.com/services/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',
-                            data = payload)
+def enviar_mensaje(request):
 
-    print(response.txt)
-
-def crear_mensaje_slack(argv):
-
-    message = ' '
-
-    try: opts, args = getopt.getopt(argv, "hm:", ["message="])
-
-    except getopt.GetoptError:
-        print('views.py -m <message>')
-
-        sys.exit(2)
-    if len(opts) == 0:
-        message= "HELLO, WORLD"
-    for opt,arg in opts:
-        if opt == '-h':
-            print('views.py -m <message>')
-            sys.exit()
-        elif opt in ("-m", "--message"):
-            message = arg
-        
-    send_slack_message(message)
-
-if __name__ == "__crear_mensaje_slack__":
-    crear_mensaje_slack(sys.argv[1:])
-
-
-
+    query = Menu.objects.all().values()[0]
+    key_menu = query['menu_uuid']
+    lista = "visita nuestro menu del día en http://127.0.0.1:8000/menu/{}".format(key_menu)
+    client = slack.WebClient(token= 'xoxb-1697344368020-1690975857909-Jp5vzd9q4Lj1kf3uSCH4AZED')
+    client.chat_postMessage(channel='#test', text=lista)
+    return render(request, 'app_nora/enviado_exitoso.html')
