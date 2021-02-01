@@ -1,0 +1,18 @@
+<h1>SELECCIONE SU OPCION</h1>
+
+<div class="card col-sm-4">
+    <h4>Nuevo diagnostico</h4>
+    <form id="CrearPedido" method="POST">
+      {% csrf_token %}
+      <table>
+        {{ crear_pedido.as_p }}
+      </table>
+      <div class="d-flex justify-content-center">
+        <input type="reset" value="cancelar" class="btn btn-secondary">  
+        &nbsp;
+        <button type="submit"  id="CrearPedido" class="btn btn-primary">Enviar</button>
+      </div>
+    </form>
+  </div>
+  </div>
+

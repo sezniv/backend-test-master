@@ -5,12 +5,28 @@ from django.contrib.auth.models import User
 
 
 class Usuario(models.Model):
+    
+    usuario = models.OneToOneField(User, on_delete = models.CASCADE, default=None)
 
-    usuario = models.OneToOneField(User, on_delete = models.CASCADE)
+    #pk
+    rutUsuario = models.CharField(max_length =10, primary_key=True, default=None,
+                    validators=[validators.MinLengthValidator(9, "Ingresar dni en el siguiente formato 77111666-5"), 
+                                validators.MaxLengthValidator(10, "Ingresar dni en el siguiente formato 77111666-5")]
+                    )
+
+class Pedido(models.Model):
+
+    rutUsuario = models.ForeignKey(Usuario,on_delete=models.CASCADE, default=None)
+    list_rol=(('opcion_1','opcion_1'),('opcion_2','opcion_2'),('opcion_3','opcion_3'),('opcion_4','opcion_4'))
+    opcion = models.CharField(max_length=15,choices= list_rol,default="Selecciona tu opción")
+    comentario = models.CharField(max_length =60, primary_key=True, default=None,
+                    validators=[validators.MinLengthValidator(2, "Tu comentario no se entiende"), 
+                                validators.MaxLengthValidator(60, "Tu comentario puede tener hasta 60 caracteres")]
+                    )
 
 class Menu(models.Model):
 
-    menu_uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="ID único para este menu")
+    menu_uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
 
     fecha = models.DateField(auto_now_add=True)
                 
