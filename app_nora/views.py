@@ -49,7 +49,7 @@ def enviar_mensaje(request):
 
     query = Menu.objects.all().values()[0]
     key_menu = query['menu_uuid']
-    lista = "visita nuestro menu del día en http://127.0.0.1:8000/menu/{}".format(key_menu)
-    client = slack.WebClient(token= 'xoxb-1697344368020-1690975857909-Jp5vzd9q4Lj1kf3uSCH4AZED')
-    client.chat_postMessage(channel='#test', text=lista)
+    text = "visita nuestro menu del día en http://127.0.0.1:8000/menu/{}".format(key_menu)
+    client = slack.WebClient(token= 'xoxb-1697344368020-1696311666130-9QDdijOCdA3to5HeAFJPqSQj')
+    client.chat_postMessage(channel='#alerts', text=text)
     return render(request, 'app_nora/enviado_exitoso.html')

@@ -8,19 +8,56 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'app_nora/css/style.css' %}">
 </head>
-<br><br>
 <body>
-    <div class="container">
-        <div class="row">
-          <div id ="container" class="col-6 col-sm-4"><h3>{{menu.opcion_1}}</h3></div>
-          <div id ="container" class="col-6 col-sm-4"><h3>{{menu.opcion_2}}</h3></div>
-      
-          <!-- Force next columns to break to new line at md breakpoint and up -->
-          <div class="w-100 d-none d-md-block"></div>
-      
-          <div id ="container" class="col-6 col-sm-4"><h3>{{menu.opcion_3}}</h3></div>
-          <div id ="container" class="col-6 col-sm-4"><h3>{{menu.opcion_4}}</h3></div>
+  <br><br>
+  <h1 style="text-align: center;">MENU DEL DIA</h1>
+  <br><br>
+  <div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Opcion 1</h5>
+          <p class="card-text">{{menu.opcion_1}}</p>
+          <input type="text"> <p>Comentario adicional</p>
+          <a href="#" class="btn btn-primary">Pedir</a>
         </div>
       </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Opcion 2</h5>
+          <h5 class="card-title">{{menu.opcion_2}}</h5>
+          <input type="text"> <p>Comentario adicional</p>
+          <a href="#" class="btn btn-primary">Pedir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Opcion 3</h5>
+          <p class="card-text">{{menu.opcion_3}}</p>
+          <input type="text"> <p>Comentario adicional</p>
+          <a href="#" class="btn btn-primary">Pedir</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Opcion 4</h5>
+          <p class="card-text">{{menu.opcion_4}}</p>
+          <input type="text"> <p>Comentario adicional</p>
+          <a href="#" class="btn btn-primary" > Pedir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
 </body>
 
