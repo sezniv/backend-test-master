@@ -8,7 +8,6 @@ class Usuario(models.Model):
     
     usuario = models.OneToOneField(User, on_delete = models.CASCADE, default=None)
 
-    #pk
     rutUsuario = models.CharField(max_length =10, primary_key=True, default=None,
                     validators=[validators.MinLengthValidator(9, "Ingresar dni en el siguiente formato 77111666-5"), 
                                 validators.MaxLengthValidator(10, "Ingresar dni en el siguiente formato 77111666-5")]
@@ -16,10 +15,14 @@ class Usuario(models.Model):
 
 class Pedido(models.Model):
 
-    rutUsuario = models.ForeignKey(Usuario,on_delete=models.CASCADE, default=None)
+    nombre = models.CharField(max_length =100, default=None,
+                    validators=[validators.MinLengthValidator(5, "El menu debe contener al menos 5 caracteres"), 
+                                validators.MaxLengthValidator(100, "Ingresar dni en el siguiente formato 77111666-5")]
+                    )
+                    
     list_rol=(('opcion_1','opcion_1'),('opcion_2','opcion_2'),('opcion_3','opcion_3'),('opcion_4','opcion_4'))
     opcion = models.CharField(max_length=15,choices= list_rol,default="Selecciona tu opción")
-    comentario = models.CharField(max_length =60, primary_key=True, default=None,
+    comentario = models.CharField(max_length =60, default=None,
                     validators=[validators.MinLengthValidator(2, "Tu comentario no se entiende"), 
                                 validators.MaxLengthValidator(60, "Tu comentario puede tener hasta 60 caracteres")]
                     )
@@ -28,24 +31,24 @@ class Menu(models.Model):
 
     menu_uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
 
-    fecha = models.DateField(auto_now_add=True)
+    fecha = models.DateField()
                 
-    opcion_1 = models.CharField(max_length =60, default=None,
+    opcion_1 = models.CharField(max_length =100, default=None,
                     validators=[validators.MinLengthValidator(5, "El menu debe contener al menos 5 caracteres"), 
-                                validators.MaxLengthValidator(60, "Ingresar dni en el siguiente formato 77111666-5")]
+                                validators.MaxLengthValidator(100, "Ingresar dni en el siguiente formato 77111666-5")]
                     )
 
-    opcion_2 = models.CharField(max_length =60, default=None,
+    opcion_2 = models.CharField(max_length =100, default=None,
                     validators=[validators.MinLengthValidator(5, "El menu debe contener al menos 5 caracteres"), 
-                                validators.MaxLengthValidator(60, "El menu debe contener maximo 5 caracteres")]
+                                validators.MaxLengthValidator(100, "El menu debe contener maximo 5 caracteres")]
                     )
 
-    opcion_3 = models.CharField(max_length =60, default=None,
+    opcion_3 = models.CharField(max_length =100, default=None,
                     validators=[validators.MinLengthValidator(5, "El menu debe contener al menos 5 caracteres"), 
-                                validators.MaxLengthValidator(60, "El menu debe contener al menos 5 caracteres")]
+                                validators.MaxLengthValidator(100, "El menu debe contener al menos 5 caracteres")]
                     )
 
-    opcion_4 = models.CharField(max_length =60, default=None,
+    opcion_4 = models.CharField(max_length =100, default=None,
                     validators=[validators.MinLengthValidator(5, "El menu debe contener al menos 5 caracteres"), 
-                                validators.MaxLengthValidator(60, "El menu debe contener al menos 5 caracteres")]
+                                validators.MaxLengthValidator(100, "El menu debe contener al menos 5 caracteres")]
                     )

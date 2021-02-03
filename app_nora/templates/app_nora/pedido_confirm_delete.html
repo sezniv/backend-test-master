@@ -6,9 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{% url 'app_nora:eliminar_menu' pk=menu.menu_uuid %}" method="POST"> 
+    <form action="{% url 'app_nora:eliminar_pedido' pk=pedido.id %}" method="POST"> 
         {% csrf_token %} 
-        Está seguro de eliminar el menu con id = {{menu.menu_uuid}}? 
+        Está seguro de eliminar el pedido con id = {{pedido.id}}? 
         <input type="submit" value="Sí" /> 
         <a href="{% url 'app_nora:listar_menu' %}">Cancelar</a> 
     </form> 

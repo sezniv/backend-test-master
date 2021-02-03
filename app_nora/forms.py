@@ -16,3 +16,8 @@ class CrearUsuario(forms.ModelForm):
     class Meta:
         model: Usuario
         fields = '__all__'
+
+class UserLoginForms(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username','password']

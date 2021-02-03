@@ -19,7 +19,7 @@ from django.contrib import admin
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    #Incluyo las views no Nora
+    #Incluyo las views de Nora
     path('', include('app_nora.urls')), 
     path('accounts/', include('django.contrib.auth.urls')),
 ]
