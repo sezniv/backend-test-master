@@ -11,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 """
 Se inicializa Slack
 """
-client = slack.WebClient(token= 'xoxb-1697344368020-1696311666130-fl72GGgFAsvJBP0wZ7vz7Uct')
+client = slack.WebClient(token= '')
 
 # TE REDIRECCIONA AL INICIO
 def inicio(request):
